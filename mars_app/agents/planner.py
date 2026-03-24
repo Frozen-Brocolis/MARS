@@ -10,8 +10,13 @@ class PlannerAgent(BaseAgent):
     def __init__(self, client) -> None:
         super().__init__(client, PLANNER_PROMPT, PLAN_SCHEMA)
 
-    def create_plan(self, safe_request: str) -> ExecutionPlan:
-        result = self.run_structured({"safe_request": safe_request})
+    def create_plan(self, safe_request: str, planner_notes: list[str] | None = None) -> ExecutionPlan:
+        result = self.run_structured(
+            {
+                "safe_request": safe_request,
+                "planner_notes": planner_notes or [],
+            }
+        )
         steps = self._parse_steps(result.get("steps"), safe_request)
         return ExecutionPlan(
             goal=result.get("goal", safe_request),

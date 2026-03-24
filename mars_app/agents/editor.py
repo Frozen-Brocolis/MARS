@@ -13,13 +13,11 @@ class EditorAgent(BaseAgent):
         self,
         original_request: str,
         approved_results: list[WorkerOutput],
-        notes: list[str],
     ) -> FinalAnswer:
         content = self.run_text(
             {
                 "original_request": original_request,
                 "approved_results": approved_results,
-                "notes": notes,
             }
         )
-        return FinalAnswer(content=content, notes=notes)
+        return FinalAnswer(content=content)

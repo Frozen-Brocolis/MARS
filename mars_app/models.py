@@ -11,6 +11,25 @@ class SafetyReport:
 
 
 @dataclass
+class PromptGuardReport:
+    prompt_override_detected: bool
+    notes: list[str] = field(default_factory=list)
+
+
+@dataclass
+class RequestSearchReport:
+    rewrite_needed: bool
+    notes: list[str] = field(default_factory=list)
+    editor_brief: str = ""
+
+
+@dataclass
+class RequestEditResult:
+    rewritten_request: str
+    change_summary: list[str] = field(default_factory=list)
+
+
+@dataclass
 class PlanStep:
     step_id: str
     title: str
@@ -69,3 +88,26 @@ class FinalAnswer:
     content: str
     format_name: str = "plain_text"
     notes: list[str] = field(default_factory=list)
+
+
+@dataclass
+class ProgressEvent:
+    stage: str
+    title: str
+    details: str = ""
+    level: str = "info"
+
+
+@dataclass
+class PostProcessResult:
+    content: str
+    removed_fragments: list[str] = field(default_factory=list)
+
+
+@dataclass
+class EditReview:
+    score: int
+    approved: bool
+    preferred_version: str
+    issues: list[str] = field(default_factory=list)
+    retry_guidance: str = ""

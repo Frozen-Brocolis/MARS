@@ -1,11 +1,29 @@
-SHIELD_SCHEMA = {
+PROMPT_GUARD_SCHEMA = {
     "type": "object",
     "properties": {
-        "status": {"type": "string"},
-        "sanitized_request": {"type": "string"},
-        "risk_notes": {"type": "array", "items": {"type": "string"}},
+        "prompt_override_detected": {"type": "boolean"},
+        "notes": {"type": "array", "items": {"type": "string"}},
     },
-    "required": ["status", "sanitized_request", "risk_notes"],
+    "required": ["prompt_override_detected", "notes"],
+}
+
+REQUEST_SEARCH_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "rewrite_needed": {"type": "boolean"},
+        "notes": {"type": "array", "items": {"type": "string"}},
+        "editor_brief": {"type": "string"},
+    },
+    "required": ["rewrite_needed", "notes", "editor_brief"],
+}
+
+REQUEST_EDIT_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "rewritten_request": {"type": "string"},
+        "change_summary": {"type": "array", "items": {"type": "string"}},
+    },
+    "required": ["rewritten_request", "change_summary"],
 }
 
 PLAN_SCHEMA = {
@@ -63,4 +81,16 @@ CRITIQUE_SCHEMA = {
         "retry_guidance": {"type": "string"},
     },
     "required": ["score", "approved", "issues", "retry_guidance"],
+}
+
+EDITOR_REVIEW_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "score": {"type": "integer"},
+        "approved": {"type": "boolean"},
+        "preferred_version": {"type": "string"},
+        "issues": {"type": "array", "items": {"type": "string"}},
+        "retry_guidance": {"type": "string"},
+    },
+    "required": ["score", "approved", "preferred_version", "issues", "retry_guidance"],
 }
