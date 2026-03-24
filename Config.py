@@ -1,0 +1,3 @@
+from mars_app.settings import ENABLE_WEB_SEARCH, MAX_CRITIC_RETRIES, MODEL_NAME
+
+__all__ = ["MODEL_NAME", "MAX_CRITIC_RETRIES", "ENABLE_WEB_SEARCH"]

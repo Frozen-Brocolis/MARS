@@ -1,0 +1,3 @@
+MODEL_NAME = "llama-3-8b-gpt-4o-ru1.0"
+MAX_CRITIC_RETRIES = 2
+ENABLE_WEB_SEARCH = False
